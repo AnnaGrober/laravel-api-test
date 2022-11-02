@@ -35,7 +35,7 @@ class UseCarService
             $car->status = 'used';
             if (!$car->save()) {
                 DB::rollBack();
-                throw new \RuntimeException('Car save error!');
+                throw new \RuntimeException('Car save error!',500);
             }
 
             $user = User::find($userId);
@@ -47,12 +47,12 @@ class UseCarService
             $user->used_car_id = $car->id;
             if (!$user->save()) {
                 DB::rollBack();
-                throw new \RuntimeException('User save error!');
+                throw new \RuntimeException('User save error!',500);
             }
 
             if (!$this->saveHistory($carId, $userId)) {
                 DB::rollBack();
-                throw new \RuntimeException('History save error!');
+                throw new \RuntimeException('History save error!',500);
             }
 
             DB::commit();
@@ -80,7 +80,7 @@ class UseCarService
             $car->status = 'free';
             if (!$car->save()) {
                 DB::rollBack();
-                throw new \RuntimeException('Car save error!');
+                throw new \RuntimeException('Car save error!', 500);
             }
 
             $user = User::find($userId);
@@ -92,14 +92,14 @@ class UseCarService
             $user->used_car_id = null;
             if (!$user->save()) {
                 DB::rollBack();
-                throw new \RuntimeException('User save error!');
+                throw new \RuntimeException('User save error!', 500);
             }
 
             $history = CarUsedHistory::where('car_id', $carId)->where('user_id', $userId)->where('finished_at', null)->first();
 
             if (!$this->finishedHistory($history)) {
                 DB::rollBack();
-                throw new \RuntimeException('History save error!');
+                throw new \RuntimeException('History save error!', 500);
             }
 
             DB::commit();

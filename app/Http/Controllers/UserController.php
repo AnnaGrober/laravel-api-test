@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Repository\UserRepository;
 use Illuminate\Http\JsonResponse;
 
-/**
- *
- */
+
 class UserController extends Controller
 {
 
@@ -22,8 +20,18 @@ class UserController extends Controller
     }
 
     /**
-     * @return JsonResponse
-     * @throws \Exception
+     * @OA\Get(
+     *     path="/api/v1/users/free",
+     *     summary="Список свободных пользователей",
+     *     tags={"User"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *         @OA\Schema(
+     *             type="array",
+     *         ),
+     *     ),
+     * )
      */
     public function getFreeUsers(): JsonResponse
     {

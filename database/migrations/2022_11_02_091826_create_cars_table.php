@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('number');
             $table->enum('status', ['free', 'used'])->default('free');
-            $table->timestamps();
+            $table->timestamps();status
         });
     }
 

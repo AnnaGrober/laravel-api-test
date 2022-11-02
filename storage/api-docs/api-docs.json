@@ -1,0 +1,119 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Приложение с арендой автомобиля",
+        "version": "1"
+    },
+    "paths": {
+        "/api/v1/cars/free": {
+            "get": {
+                "tags": [
+                    "Car"
+                ],
+                "summary": "Список свободных автомобилей",
+                "operationId": "050b7c3c4e0c80b93082e63b4d4a2a70",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/v1/car/use": {
+            "post": {
+                "tags": [
+                    "Car use"
+                ],
+                "summary": "Арендовать автомобиль",
+                "description": "Арендовать автомобиль",
+                "operationId": "62938a1da3ea1234f406892f6e867e91",
+                "parameters": [
+                    {
+                        "name": "car_id",
+                        "in": "query",
+                        "description": "Car id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Автомобиль успешно взят в использование"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/v1/car/return": {
+            "post": {
+                "tags": [
+                    "Car return"
+                ],
+                "summary": "Возвращение автомобиля",
+                "description": "Возвращение автомобиля",
+                "operationId": "d4dee94591053adeba2c7699c1b134ef",
+                "parameters": [
+                    {
+                        "name": "car_id",
+                        "in": "query",
+                        "description": "Car id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "user_id",
+                        "in": "query",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Автомобиль возвращен успешно!"
+                    },
+                    "422": {
+                        "description": "Ошибка валидации"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/free": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Список свободных пользователей",
+                "operationId": "db47d8cfa973de9379ad14c158681593",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    }
+}
